@@ -4,19 +4,44 @@
 import random
 from data import words
 
-def get_word(words):
-    word = random.choice(words)
-
-    return word
-
 def thegame():
-    letters = set(word)
-    used_letters = set()
+    word = random.choice(words)
+    turns = 10
+    playerguess = ''
+    validchoices = set('abcdefhijklmnopqrstuvwxyz')
 
-    
+    while len(word) > 0:
+        random_word = ''
+
+        for letter in word:
+            if letter in playerguess:
+                random_word = random_word + letter
+            else:
+                random_word = random_word + "_ "
+        
+        if random_word == word:
+            print(random_word)
+            print("you guessed the word!")
+            break
+
+        print("Guess the word! ", random_word)
+        guess = input()
+
+        if guess in validchoices:
+           playerguess = playerguess + guess
+        else:
+            print('enter a valid character')
+            guess = input()
+
+        if guess not in word:
+            turns = turns - 1
+        if turns == 0:
+            print('game over')
+            break
 
 
-player_input = input('pick a letter')
-print(player_input)
+getname = input('Enter your name: ')
+print('Hi', getname,'!')
+print('try to guess the word, 10 attempts')
 
-get_word(words)
+thegame()
