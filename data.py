@@ -1,0 +1,1 @@
+words = ["welcome", "popcorn", "health", "friends", "winter", "scarf", "meeting", "snake", "bubble", "travel", "holiday", "cheerful", "influence", "observant"]
