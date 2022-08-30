@@ -45,9 +45,8 @@ def thegame():
             print('Game over! The word was', word)
             break
 
-        if random_word == word:
-            print(random_word)
-            print("You guessed the word!")
+        if "_" not in random_word:
+            print("Well done! You guessed the word! The word was", word)
             guessed = True
             break
 
