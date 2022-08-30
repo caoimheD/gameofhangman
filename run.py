@@ -5,12 +5,12 @@ def thegame():
     word = random.choice(words)
     turns = 10
     playerguess = ''
-    validchoices = set('abcdefhijklmnopqrstuvwxyz')
+    validchoices = set('abcdefghijklmnopqrstuvwxyz')
     random_word = "_ " * len(word)
     guessed_letters = []
     guessed = False
 
-    while not guessed and turns > 0:
+    while len(word) > 0 and turns > 0:
         random_word = ''
 
         for letter in word:
@@ -23,29 +23,29 @@ def thegame():
             print(random_word)
             print("You guessed the word!")
             break
-
+        
         print("Guess the word! ", random_word)
-        guess = input()
+        playerguess = input()
 
-        if guess in validchoices and len(guess) == 1:
-            if guess in guessed_letters:
-                print('you already tried this letter', guess)
+        if playerguess not in validchoices:
+            print('Not a valid guess. Please enter a valid character')    
+            playerguess = input()
+        
+        if playerguess in guessed_letters:
+                print('you already tried this letter', playerguess)
                 turns -= 1
                 print('Turns left: ', turns)
-            elif guess not in word:
-                print(guess, 'is not in the word')
+                print("Letters tried: ", guessed_letters)
+        elif playerguess not in word:
+                print(playerguess, 'is not in the word')
                 turns -= 1
-                guessed_letters.append(guess)
+                guessed_letters.append(playerguess)
                 print('Turns left: ', turns)
-            elif guess not in validchoices:
-                print('Not a valid guess. Please enter a valid character')
-                guess = input()
-                print('Turns left: ', turns)
-            else:
-                print('Well done!', guess, 'is in the word!')
-                guessed_letters.append(guess)
-                playerguess = playerguess + guess
-            
+                print("Letters tried: ", guessed_letters)
+        else:
+            print('Well done!', playerguess, 'is in the word!')
+            guessed_letters.append(playerguess)
+
         if turns == 0:
             print('Game over! The word was', word)
             break
