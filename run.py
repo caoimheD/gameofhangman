@@ -23,23 +23,23 @@ def thegame():
         if playerguess in validchoices:
 
             if playerguess in word:
-                print('Well done!', playerguess, 'is in the word!')
+                print('Well done!', playerguess, 'is in the word!', '\n')
                 guessed_letters.append(playerguess)
-                print('Turns left: ', turns)
-                print("Letters tried: ", guessed_letters)
+                print('Turns left: ', turns, '\n')
+                print("Letters tried: ", guessed_letters, '\n')
                 display_letter(word, random_word, playerguess)
 
             elif playerguess in guessed_letters:
-                print('you already tried this letter', playerguess)
+                print('you already tried this letter', playerguess, '\n')
                 turns -= 1
-                print('Turns left: ', turns)
-                print("Letters tried: ", guessed_letters)
+                print('Turns left: ', turns, '\n')
+                print("Letters tried: ", guessed_letters, '\n')
             else:
-                print(playerguess, 'is not in the word')
+                print(playerguess, 'is not in the word', '\n')
                 turns -= 1
                 guessed_letters.append(playerguess)
-                print('Turns left: ', turns)
-                print("Letters tried: ", guessed_letters)
+                print('Turns left: ', turns, '\n')
+                print("Letters tried: ", guessed_letters, '\n')
         else:
             print('Not a valid guess. Please enter a valid character')    
             pass
@@ -49,7 +49,7 @@ def thegame():
             break
 
         if "_" not in random_word:
-            print("Well done! You guessed the word! The word was", word)
+            print("Well done! You guessed the word! The word was", word, '\n')
             guessed = True
             break
 
