@@ -10,7 +10,7 @@ def get_word():
 
     return word
 
-# function that plays the game (while loop that breaks if certain conditions are met, such as guessing the word or running out of turns)
+# function that plays the game (while loop that breaks if word guessed or turns is 0)
 def thegame():
     word = get_word()
     turns = 10
@@ -27,26 +27,26 @@ def thegame():
 
         if playerguess in validchoices:
 
-            if playerguess in word:
+            if playerguess in guessed_letters:
+                print(Fore.RED + 'you already tried this letter', playerguess, '\n')
+                turns -= 1
+                print('Turns left: ', turns, '\n')
+                print("Letters tried: ", guessed_letters, '\n')            
+            elif playerguess in word:
                 print(Fore.GREEN + "Well done!", playerguess, "is in the word!", '\n')
                 guessed_letters.append(playerguess)
                 print('Turns left: ', turns, '\n')
                 print("Letters tried: ", guessed_letters, '\n')
-                display_letter(word, random_word, playerguess)
-
-            elif playerguess in guessed_letters:
-                print(Fore.RED + 'you already tried this letter', playerguess, '\n')
-                turns -= 1
-                print('Turns left: ', turns, '\n')
-                print("Letters tried: ", guessed_letters, '\n')
+                display_letter(word, random_word, playerguess)   
             else:
                 print(Fore.RED + "That's incorrect!", playerguess, "is not in the word", '\n')
                 turns -= 1
                 guessed_letters.append(playerguess)
                 print('Turns left: ', turns, '\n')
                 print("Letters tried: ", guessed_letters, '\n')
+                
         else:
-            print(Fore.RED + 'Not a valid character. Please enter a letter of the alphabet.')    
+            print(Fore.RED + 'Not a valid character. Enter a letter of the alphabet.')    
             pass
         
         if turns == 0:
@@ -77,8 +77,6 @@ print('Hi', getname)
 print('Try to guess the word, you have 10 attempts')
 
 # function for graphics
-
-# function for colours
 
 # calling functions
 thegame()
