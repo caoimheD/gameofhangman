@@ -1,9 +1,13 @@
 import random
 from data import words
 
+def get_word():
+    word = random.choice(words)
+
+    return word
 
 def thegame():
-    word = random.choice(words)
+    word = get_word()
     turns = 10
     playerguess = ''
     validchoices = set('abcdefghijklmnopqrstuvwxyz')
@@ -11,7 +15,7 @@ def thegame():
     guessed_letters = []
     guessed = False
 
-    while len(word) > 0 and turns > 0:
+    while not guessed and turns > 0:
 
         print("Guess the word! ", " ".join(random_word))
         playerguess = input()
@@ -36,10 +40,9 @@ def thegame():
                 guessed_letters.append(playerguess)
                 print('Turns left: ', turns)
                 print("Letters tried: ", guessed_letters)
-                
         else:
             print('Not a valid guess. Please enter a valid character')    
-            playerguess = input()
+            pass
         
         if turns == 0:
             print('Game over! The word was', word)
