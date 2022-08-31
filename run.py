@@ -1,17 +1,22 @@
 import random
 from data import words
+# importing and initializing colorama, for colour text
+from colorama import init, Fore, Back, Style
+init(autoreset=True)
 
+# function that gets a random word from the list of words in data file
 def get_word():
     word = random.choice(words)
 
     return word
 
+# function that plays the game (while loop that breaks if certain conditions are met, such as guessing the word or running out of turns)
 def thegame():
     word = get_word()
     turns = 10
     playerguess = ''
     validchoices = set('abcdefghijklmnopqrstuvwxyz')
-    random_word = ["_" for i in range(len(word))]
+    random_word = ["_ " for i in range(len(word))]
     guessed_letters = []
     guessed = False
 
@@ -23,41 +28,42 @@ def thegame():
         if playerguess in validchoices:
 
             if playerguess in word:
-                print('Well done!', playerguess, 'is in the word!', '\n')
+                print(Fore.GREEN + "Well done!", playerguess, "is in the word!", '\n')
                 guessed_letters.append(playerguess)
                 print('Turns left: ', turns, '\n')
                 print("Letters tried: ", guessed_letters, '\n')
                 display_letter(word, random_word, playerguess)
 
             elif playerguess in guessed_letters:
-                print('you already tried this letter', playerguess, '\n')
+                print(Fore.RED + 'you already tried this letter', playerguess, '\n')
                 turns -= 1
                 print('Turns left: ', turns, '\n')
                 print("Letters tried: ", guessed_letters, '\n')
             else:
-                print(playerguess, 'is not in the word', '\n')
+                print(Fore.RED + "That's incorrect!", playerguess, "is not in the word", '\n')
                 turns -= 1
                 guessed_letters.append(playerguess)
                 print('Turns left: ', turns, '\n')
                 print("Letters tried: ", guessed_letters, '\n')
         else:
-            print('Not a valid guess. Please enter a valid character')    
+            print(Fore.RED + 'Not a valid character. Please enter a letter of the alphabet.')    
             pass
         
         if turns == 0:
-            print('Game over! The word was', word)
+            print(Fore.RED + "Game over! You lost!", "The word was", word)
             break
 
-        if "_" not in random_word:
-            print("Well done! You guessed the word! The word was", word, '\n')
+        if "_ " not in random_word:
+            print(Fore.GREEN + "Well done! You guessed the word!", "The word was", word, '\n')
             guessed = True
             break
 
-
-def main():
+# function that gives the option to play the game again
+def play_again():
     while input("Play again? Y/N ").upper() == "Y":
         thegame()
 
+# function that replaces the underscore with the letter chosen by player
 def display_letter(word, random_word, playerguess):
     for i in range(len(word)):
         if playerguess == word[i]:
@@ -65,11 +71,15 @@ def display_letter(word, random_word, playerguess):
     
     return(" ".join(random_word))
 
-
+# output that user sees
 getname = input('Lets play Hangman! Enter your name: ')
 print('Hi', getname)
 print('Try to guess the word, you have 10 attempts')
 
+# function for graphics
 
+# function for colours
+
+# calling functions
 thegame()
-main()
+play_again()
