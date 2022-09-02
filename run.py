@@ -26,7 +26,7 @@ def thegame():
     while not guessed and turns > 0:
 
         print("Guess the word! ", " ".join(random_word))
-        playerguess = input()
+        playerguess = input().lower()
 
         if playerguess in validchoices:
 
@@ -65,11 +65,12 @@ def thegame():
 
 # function that gives the option to play the game again
 def play_again():
-    while input("Play again? Y/N ").upper() == "Y":
+    while input("Play again? y/n ").lower() == "y":
         thegame()
 
 # function that replaces the underscore with the letter chosen by player
 def display_letter(word, random_word, playerguess):
+
     for i in range(len(word)):
         if playerguess == word[i]:
             random_word[i] = playerguess
