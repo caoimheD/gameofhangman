@@ -1,16 +1,22 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome caoimheD,
+This is a Python terminal game of 'Hangman', deployed to Heroku.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+Players must guess a random word, and each wrong guess leads to a part of the man being drawn. If the players guess the word before the whole figure has been displayed, they win. Otherwise, they lose.
 
-## Reminders
+## How to play
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+This game is based on the traditional hangman game:
+- A random word is chosen and displayed as underscores
+- Players are asked to guess a letter
+- If their guess is correct, the letter replaces one of the underscores
+- If their guess is incorrect, they lose a turn and the figure of the hangman starts to be drawn
 
-## Creating the Heroku app
+If the player guesses the word before theirs turns go to zero and the full figure is drawn, then the player wins.
+
+If the turns go to zero and the full image of the hangman is drawen, then the player loses.
+
+## Features
 
 When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
 
@@ -23,11 +29,10 @@ If you have credentials, such as in the Love Sandwiches project, you must create
 
 Connect your GitHub repository and deploy as normal.
 
-## Constraints
+## Testing
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+## Deployment
 
------
-Happy coding!
+## Credits
 
-Words: https://www.randomlists.com/random-words
+List of random words was generated from: https://www.randomlists.com/random-words
