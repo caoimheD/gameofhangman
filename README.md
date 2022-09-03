@@ -42,7 +42,25 @@ For both instances of winning and losing, the player is asked if they want to pl
 
 ## Testing
 
-Testing was mainly conducted through the gitpod terminal; as each feature was implemented, the program was run in the terminal and the feature was tested.
+Testing was mainly conducted through the gitpod terminal; as each feature was implemented, the program was run in the terminal and the feature was tested. If it did not work as intended, the code was then worked on again.
+
+The following features were tested:
+
+| Action        | Expected Behaviour  | Result | 
+| ------------- | ------------- | ------------- | 
+| Run application in terminal  | Message appears and asks for name | pass | 
+| Player enters name  | welcome message shows with player name, hidden word with underscores shows | pass | 
+| player enters an uppercase letter  | message says if letter is in the word or not | pass | 
+| player enters an lowercase letter  | message says if letter is in the word or not | pass | 
+| player enters a letter  | letter is added to 'letters used' list | pass | 
+| player enters a number or character  | message says invalid character | pass | 
+| letter is correct  | letter replaces underscore | pass | 
+| letter is incorrect  | 'turns' decreases by 1 | pass | 
+| letter is incorrect  | a piece of the graphic is shown | pass |
+| player guesses all letters  | winning message displayed, asked if they want to play again | pass |  
+| turns goes to 0  | player told they lost, full graphic drawn, asked if they want to play again | pass |  
+| enter 'y' to play again question | game restarts | pass | 
+| enter 'n' to play again qustion | game exits | pass | 
 
 ## Deployment
 
