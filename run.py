@@ -7,14 +7,18 @@ init(autoreset=True)
 # imports list of words from data file
 from data import words
 
-# function that gets a random word from the list of words in data file
+
 def get_word():
+    """
+    function that gets a random word from the list of words in data file
+    """
     word = random.choice(words)
+
 
     return word
 
 # function that plays the game (while loop breaks if word guessed or turns is 0)
-def thegame():
+def the_game():
     word = get_word()
     turns = 10
     playerguess = ''
@@ -39,14 +43,14 @@ def thegame():
                 print(Fore.GREEN + "Well done!", playerguess, "is in the word!", '\n')
                 guessed_letters.append(playerguess)
                 print('Turns left: ', turns, '\n')
-                print("Letters tried: ", guessed_letters, '\n')
+                print("Letters tried: ", ', '.join(guessed_letters), '\n')
                 display_letter(word, random_word, playerguess)   
             else:
                 print(Fore.RED + "That's incorrect!", playerguess, "is not in the word", '\n')
                 turns -= 1
                 guessed_letters.append(playerguess)
                 print('Turns left: ', turns, '\n')
-                print("Letters tried: ", guessed_letters, '\n')
+                print("Letters tried: ", ', '.join(guessed_letters), '\n')
                 graphics(turns)
                 
         else:
@@ -131,5 +135,5 @@ def graphics(turns):
         print("      / \     ")
 
 # calling functions
-thegame()
+the_game()
 play_again()
