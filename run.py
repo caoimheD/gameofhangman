@@ -17,12 +17,14 @@ def get_word():
 
     return word
 
-# function that plays the game (while loop breaks if word guessed or turns is 0)
 def the_game():
+    """
+    function that plays the game (while loop breaks if word guessed or turns is 0)
+    """
     word = get_word()
     turns = 10
-    playerguess = ''
-    validchoices = set('abcdefghijklmnopqrstuvwxyz')
+    player_guess = ''
+    valid_choices = set('abcdefghijklmnopqrstuvwxyz')
     random_word = ["_ " for i in range(len(word))]
     guessed_letters = []
     guessed = False
@@ -30,25 +32,25 @@ def the_game():
     while not guessed and turns > 0:
 
         print("Guess the word! ", " ".join(random_word))
-        playerguess = input().lower()
+        player_guess = input().lower()
 
-        if playerguess in validchoices:
+        if player_guess in valid_choices:
 
-            if playerguess in guessed_letters:
-                print(Fore.RED + 'you already tried this letter', playerguess, '\n')
+            if player_guess in guessed_letters:
+                print(Fore.RED + 'you already tried this letter', player_guess, '\n')
                 turns -= 1
                 print('Turns left: ', turns, '\n')
                 print("Letters tried: ", guessed_letters, '\n')         
-            elif playerguess in word:
-                print(Fore.GREEN + "Well done!", playerguess, "is in the word!", '\n')
-                guessed_letters.append(playerguess)
+            elif player_guess in word:
+                print(Fore.GREEN + "Well done!", player_guess, "is in the word!", '\n')
+                guessed_letters.append(player_guess)
                 print('Turns left: ', turns, '\n')
                 print("Letters tried: ", ', '.join(guessed_letters), '\n')
-                display_letter(word, random_word, playerguess)   
+                display_letter(word, random_word, player_guess)   
             else:
-                print(Fore.RED + "That's incorrect!", playerguess, "is not in the word", '\n')
+                print(Fore.RED + "That's incorrect!", player_guess, "is not in the word", '\n')
                 turns -= 1
-                guessed_letters.append(playerguess)
+                guessed_letters.append(player_guess)
                 print('Turns left: ', turns, '\n')
                 print("Letters tried: ", ', '.join(guessed_letters), '\n')
                 graphics(turns)
