@@ -36,18 +36,28 @@ def get_word():
     """
     function that gets a random word from the list of words in data file
     """
-    make_choice = input("Choose your category:\n\n 1. Animals\n 2. Geography\n 3. Food\n")
 
-    if make_choice == '1':
-        word = random.choice(animalwords)
-    elif make_choice == '2':
-        word = random.choice(geowords)
-    elif make_choice == '3':
-        word = random.choice(foodwords)
-    else:
-        print('enter a valid choice')
+    while True:
+        make_choice = input("Choose your category:\n\n 1. Animals\n 2. Geography\n 3. Food\n")
 
+        if make_choice == '1':
+            word = random.choice(animalwords)
+            print(Fore.YELLOW + 'you chose animals!')
+            break
+        elif make_choice == '2':
+            word = random.choice(geowords)
+            print(Fore.YELLOW + 'you chose geography!')
+            break
+        elif make_choice == '3':
+            word = random.choice(foodwords)
+            print(Fore.YELLOW + 'you chose food!')
+            break
+        else:
+            print('enter only 1, 2 or 3')
+            pass
+    
     return word
+
 
 
 def the_game():
