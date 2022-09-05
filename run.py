@@ -1,11 +1,11 @@
 import random
 
+# imports list of words from data file
+from data import words
+
 # importing and initializing colorama, for colour text
 from colorama import init, Fore, Back, Style
 init(autoreset=True)
-
-# imports list of words from data file
-from data import words
 
 
 def get_word():
@@ -13,9 +13,8 @@ def get_word():
     function that gets a random word from the list of words in data file
     """
     word = random.choice(words)
-
-
     return word
+
 
 def the_game():
     """
@@ -69,28 +68,36 @@ def the_game():
             guessed = True
             break
 
-# function that gives the option to play the game again
+
 def play_again():
+    """
+    function that gives the option to play the game again
+    """
     while input("Play again? y/n ").lower() == "y":
-        thegame()
+        the_game()
 
-# function that replaces the underscore with the letter chosen by player
+
 def display_letter(word, random_word, playerguess):
-
+    """
+    function that replaces the underscore with the letter chosen by player
+    """
     for i in range(len(word)):
         if playerguess == word[i]:
             random_word[i] = playerguess
     
-    return(" ".join(random_word))
+    return (" ".join(random_word))
+
 
 # output that user sees
-getname = input('Lets play Hangman! Enter your name: ')
-print('Hi', getname)
+get_name = input('Lets play Hangman! Enter your name: ')
+print('Hi', get_name)
 print('Try to guess the word, you have 10 attempts')
 
-# function for graphics
 
 def graphics(turns):
+    """
+    function that displays graphics
+    """
     if turns == 9:
         print("--------------")
     if turns == 8:
@@ -135,6 +142,7 @@ def graphics(turns):
         print("      \O/_|   ")
         print("       |      ")
         print("      / \     ")
+
 
 # calling functions
 the_game()
