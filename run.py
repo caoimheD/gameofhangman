@@ -1,18 +1,52 @@
 import random
 
 # imports list of words from data file
-from data import words
+from data import animalwords
+from data import geowords
+from data import foodwords
 
 # importing and initializing colorama, for colour text
+import colorama
 from colorama import init, Fore, Back, Style
 init(autoreset=True)
 
+
+class CategoryChoice:
+    """
+    class for category choice
+    """
+    def __init__(self, category):
+        self.category = category
+
+    def category_selection(self):
+        """
+        Decides category based on player choice
+        """
+        if self.category == "1":
+            print('animals')
+            return "Animals"
+        elif self.category == "2":
+            print('geography')
+            return "Geography"
+        elif self.category == "3":
+            print('Food')
+            return "Food"
 
 def get_word():
     """
     function that gets a random word from the list of words in data file
     """
-    word = random.choice(words)
+    make_choice = input("Choose your category:\n\n 1. Animals\n 2. Geography\n 3. Food\n")
+
+    if make_choice == '1':
+        word = random.choice(animalwords)
+    elif make_choice == '2':
+        word = random.choice(geowords)
+    elif make_choice == '3':
+        word = random.choice(foodwords)
+    else:
+        print('enter a valid choice')
+
     return word
 
 
@@ -145,5 +179,10 @@ def graphics(turns):
 
 
 # calling functions
-the_game()
-play_again()
+def main():
+    the_game()
+    play_again()
+
+
+main()
+
