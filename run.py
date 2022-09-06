@@ -1,14 +1,17 @@
 import random
 
-# imports list of words from data file
-from data import animalwords
+from data import animalwords  # imports lists of words from data file
 from data import geowords
 from data import foodwords
 
-# importing and initializing colorama, for colour text
-import colorama
+import colorama  #importing and initializing colorama, for colour text
 from colorama import init, Fore, Back, Style
 init(autoreset=True)
+
+# output that user sees
+get_name = input('Lets play Hangman! Enter your name: ')
+print('Hi', get_name)
+print('Objective of the game is to guess a hidden word, you can make 10 incorrect guesses.')
 
 
 class CategoryChoice:
@@ -23,14 +26,12 @@ class CategoryChoice:
         Decides category based on player choice
         """
         if self.category == "1":
-            print('animals')
-            return "Animals"
+            print(Fore.YELLOW + 'The category selected is animals!')
         elif self.category == "2":
-            print('geography')
-            return "Geography"
+            print(Fore.YELLOW + 'The category selected is geography!')
         elif self.category == "3":
-            print('Food')
-            return "Food"
+            print(Fore.YELLOW + 'The category selected is food!')
+
 
 def get_word():
     """
@@ -38,25 +39,24 @@ def get_word():
     """
 
     while True:
-        make_choice = input("Choose your category:\n\n 1. Animals\n 2. Geography\n 3. Food\n")
+        make_choice = input("Choose your category (enter 1, 2 or 3):\n\n 1. Animals\n 2. Geography\n 3. Food\n")
+        CategoryChoice(make_choice).category_selection()  # uses the function in the CategoryChoice class to print based on player choice
 
         if make_choice == '1':
             word = random.choice(animalwords)
-            print(Fore.YELLOW + 'you chose animals!')
             break
         elif make_choice == '2':
             word = random.choice(geowords)
-            print(Fore.YELLOW + 'you chose geography!')
             break
         elif make_choice == '3':
             word = random.choice(foodwords)
-            print(Fore.YELLOW + 'you chose food!')
             break
         else:
             print('enter only 1, 2 or 3')
             pass
     
     return word
+
 
 
 
@@ -74,7 +74,7 @@ def the_game():
 
     while not guessed and turns > 0:
 
-        print("Guess the word! ", " ".join(random_word))
+        print("Guess a letter! ", " ".join(random_word))
         player_guess = input().lower()
 
         if player_guess in valid_choices:
@@ -82,19 +82,19 @@ def the_game():
             if player_guess in guessed_letters:
                 print(Fore.RED + 'you already tried this letter', player_guess, '\n')
                 turns -= 1
-                print('Turns left: ', turns, '\n')
+                print('Incorrect guesses left: ', turns, '\n')
                 print("Letters tried: ", guessed_letters, '\n')         
             elif player_guess in word:
                 print(Fore.GREEN + "Well done!", player_guess, "is in the word!", '\n')
                 guessed_letters.append(player_guess)
-                print('Turns left: ', turns, '\n')
+                print('Incorrect guesses left: ', turns, '\n')
                 print("Letters tried: ", ', '.join(guessed_letters), '\n')
                 display_letter(word, random_word, player_guess)   
             else:
                 print(Fore.RED + "That's incorrect!", player_guess, "is not in the word", '\n')
                 turns -= 1
                 guessed_letters.append(player_guess)
-                print('Turns left: ', turns, '\n')
+                print('Incorrect guesses left: ', turns, '\n')
                 print("Letters tried: ", ', '.join(guessed_letters), '\n')
                 graphics(turns)
                 
@@ -132,60 +132,54 @@ def display_letter(word, random_word, playerguess):
     return (" ".join(random_word))
 
 
-# output that user sees
-get_name = input('Lets play Hangman! Enter your name: ')
-print('Hi', get_name)
-print('Try to guess the word, you have 10 attempts')
-
-
 def graphics(turns):
     """
     function that displays graphics
     """
     if turns == 9:
-        print("--------------")
+        print(Fore.RED + "--------------")
     if turns == 8:
-        print("--------------")
-        print("       O      ")
+        print(Fore.RED + "--------------")
+        print(Fore.RED + "       O      ")
     if turns == 7:
-        print("--------------")
-        print("       O      ")
-        print("       |      ")
+        print(Fore.RED + "--------------")
+        print(Fore.RED + "       O      ")
+        print(Fore.RED + "       |      ")
     if turns == 6:
-        print("--------------")
-        print("       O      ")
-        print("       |      ")
-        print("      /       ")
+        print(Fore.RED + "--------------")
+        print(Fore.RED + "       O      ")
+        print(Fore.RED + "       |      ")
+        print(Fore.RED + "      /       ")
     if turns == 5:
-        print("--------------")
-        print("       O      ")
-        print("       |      ")
-        print("      / \     ")
+        print(Fore.RED + "--------------")
+        print(Fore.RED + "       O      ")
+        print(Fore.RED + "       |      ")
+        print(Fore.RED + "      / \     ")
     if turns == 4:
-        print("--------------")
-        print("      \O      ")
-        print("       |      ")
-        print("      / \     ")
+        print(Fore.RED + "--------------")
+        print(Fore.RED + "      \O      ")
+        print(Fore.RED + "       |      ")
+        print(Fore.RED + "      / \     ")
     if turns == 3:
-        print("--------------")
-        print("      \O/      ")
-        print("       |      ")
-        print("      / \     ")
+        print(Fore.RED + "--------------")
+        print(Fore.RED + "      \O/      ")
+        print(Fore.RED + "       |      ")
+        print(Fore.RED + "      / \     ")
     if turns == 2:
-        print("--------------")
-        print("      \O/ |   ")
-        print("       |      ")
-        print("      / \     ")
+        print(Fore.RED + "--------------")
+        print(Fore.RED + "      \O/ |   ")
+        print(Fore.RED + "       |      ")
+        print(Fore.RED + "      / \     ")
     if turns == 1:
-        print("--------------")
-        print("      \O/_|   ")
-        print("       |      ")
-        print("      / \     ")
+        print(Fore.RED + "--------------")
+        print(Fore.RED + "      \O/_|   ")
+        print(Fore.RED + "       |      ")
+        print(Fore.RED + "      / \     ")
     if turns == 0:
         print(Fore.RED + "--------------")
-        print("      \O/_|   ")
-        print("       |      ")
-        print("      / \     ")
+        print(Fore.RED + "      \O/_|   ")
+        print(Fore.RED + "       |      ")
+        print(Fore.RED + "      / \     ")
 
 
 # calling functions
