@@ -8,10 +8,19 @@ import colorama  #importing and initializing colorama, for colour text
 from colorama import init, Fore, Back, Style
 init(autoreset=True)
 
-# output that user sees
-get_name = input('Lets play Hangman! Enter your name: ')
-print('Hi', get_name)
-print('Objective of the game is to guess a hidden word, you can make 10 incorrect guesses.')
+
+def output_area():
+    """
+    output that user sees, introduction messages
+    """
+    get_name = input('Lets play Hangman! Enter your name: ')
+
+    while get_name == "":
+        print('please enter a valid name')
+        get_name = input('Lets play Hangman! Enter your name: ')
+
+    print('\nHi', get_name)
+    print(Fore.BLUE + '\nObjective of the game is to guess a hidden word, you can make 10 incorrect guesses.\n')
 
 
 class CategoryChoice:
@@ -184,6 +193,7 @@ def graphics(turns):
 
 # calling functions
 def main():
+    output_area()
     the_game()
     play_again()
 
