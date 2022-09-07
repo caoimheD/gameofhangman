@@ -31,7 +31,7 @@ class CategoryChoice:
     def __init__(self, category):
         self.category = category
 
-    def category_selection(self):
+    def display(self):
         """
         Decides category based on player choice
         """
@@ -42,6 +42,15 @@ class CategoryChoice:
         elif self.category == "3":
             print(Fore.YELLOW + 'The category selected is food!')
 
+    def words(self):
+        if self.category == '1':
+            return animalwords
+        elif self.category == '2':
+            return geowords
+        elif self.category == '3':
+            return foodwords
+        else:
+            return None
 
 def get_word():
     """
@@ -49,25 +58,20 @@ def get_word():
     """
 
     while True:
+    
         make_choice = input("Choose your category (enter 1, 2 or 3):\n\n"
                             "1. Animals\n2. Geography\n3. Food\n")
-        CategoryChoice(make_choice).category_selection()
+        acceptable_input = ['1', '2', '3']
+        if make_choice not in acceptable_input:
+            print('enter only 1, 2 or 3')
+            continue
+        category = CategoryChoice(make_choice)
+        category.display()
         # uses the function in the CategoryChoice class to print
         # a message based on player choice
-
-        if make_choice == '1':
-            word = random.choice(animalwords)
-            break
-        elif make_choice == '2':
-            word = random.choice(geowords)
-            break
-        elif make_choice == '3':
-            word = random.choice(foodwords)
-            break
-        else:
-            print('enter only 1, 2 or 3')
-            pass
-    return word
+        
+        word = random.choice(category.words())
+        return word
 
 
 def the_game():
