@@ -21,7 +21,7 @@ def output_area():
 
     print('\nHi', get_name)
     print(Fore.YELLOW + '\nObjective of the game is to guess a hidden word,',
-          'you can make 10 incorrect guesses.\n')
+          Fore.YELLOW + 'you can make 10 incorrect guesses.\n')
 
 
 class CategoryChoice:
