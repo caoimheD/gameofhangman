@@ -4,6 +4,10 @@ This is a Python terminal game of 'Hangman', deployed to Heroku.
 
 Players must guess a random word, and each wrong guess leads to a part of the man being drawn. If the players guess the word before the whole figure has been displayed, they win. Otherwise, they lose.
 
+The live link to the project is here: https://game-hangman-pp3.herokuapp.com/
+
+<img src = "images/mockup.jpg" width = 850 height = 400>
+
 ## How to play
 
 This game is based on the traditional hangman game:
@@ -21,8 +25,11 @@ If the turns go to zero and the full image of the hangman is drawen, then the pl
 
 The first feature that the user encounters is being asked for their name. The purpose of this is to allow for a more personalized experience. The player will input their name and they will then receive a welcome message. This data entry is validated and it cannot be left blank. Players are free to enter any name they like, even with numbers or characters, however if they leave it blank they will be asked to enter their name again.
 
+![nav](images/entername.jpg)
+
 The player will then see instructions and rules about the game:
 
+![nav](images/intro.jpg)
 
 They are informed what the objective of the game is and that they can make a maximun of 10 wrong guesses. They are then introduced to a feature of the game which is categorys. There is a choice of 3 categorys (animals, geography, food): depending on the player choice, the word they have to guess will be related to that category.
 
@@ -58,6 +65,12 @@ Players lose the game when they run out of incorrect guesses and the full graphi
 
 For both instances of winning and losing, the player is asked if they want to play again. They can input y for yes and n for no.
 
+## Data model
+
+A class called CategoryChoice was used in this game, which has 3 different instances (one for each category). The class has a property of self.category and a method of category_selection, which determines the category to display based on the input of the player. It also displays a message on the terminal to confirm this with the player.
+
+## Data validation
+
 ## Testing
 
 Testing was mainly conducted through the gitpod terminal; as each feature was implemented, the program was run in the terminal and the feature was tested. If it did not work as intended, the code was then worked on again.
@@ -82,6 +95,9 @@ The following features were tested:
 | incorrect guesses left goes to 0  | player told they lost, full graphic drawn, asked if they want to play again | pass |  
 | enter 'y' to play again question | game restarts | pass | 
 | enter 'n' to play again qustion | game exits | pass | 
+
+
+Validator testing was done through PEP8 - no errors returned (http://pep8online.com/)
 
 ## Deployment
 
