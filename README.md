@@ -63,13 +63,29 @@ Players lose the game when they run out of incorrect guesses and the full graphi
 
 ![nav](images/playerlost.jpg)
 
-For both instances of winning and losing, the player is asked if they want to play again. They can input y for yes and n for no.
+For both instances of winning and losing, the player is asked if they want to play again. They can input y for yes or any other letter to exit.
+
+![nav](images/playagain.jpg)
 
 ## Data model
 
 A class called CategoryChoice was used in this game, which has 3 different instances (one for each category). The class has a property of self.category and a method of category_selection, which determines the category to display based on the input of the player. It also displays a message on the terminal to confirm this with the player.
 
 ## Data validation
+
+There are multiple times that the player is required to enter an input. For all of these, the data is validated.
+
+- Name request input. 
+
+Input data is validated by a while loop that returns 'please enter a valid name' if the field is left blank. Players are allowed to use numbers and characters in their name, so this only returns an error and does not move forward with the game when it is left blank. Once a valid name is entered, the while loop breaks and the game continues.
+
+- Category selection input. 
+
+Players can only enter in numbers 1, 2 or 3 here. This is validated in the same if statement that assigns a value to 'word' based on the word list selected (if the category is food, the random word will be generated from the food list). This if statement ends with an 'else' (which means that if the selection is not 1, 2 or 3), then a print statement will appear saying to make a valid choice and the options will be presented again. Players cannot continue with the game until they make a valid choice.
+
+- Guessing letters input.
+
+This is validated with the use of a try/except statement. If the player's guess is not in the 'validchoices' set (the alphabet), then this will raise a value error. The value error prints a message informing the player to only enter a letter of the alphabet. This does not impact how far they have gotten in the game already, their already guessed letters will still show and the letters used will still remain the same. They will just need to enter a valid character in order to continue playing.
 
 ## Testing
 
@@ -98,6 +114,10 @@ The following features were tested:
 
 
 Validator testing was done through PEP8 - no errors returned (http://pep8online.com/)
+
+Fixed bugs
+
+There was one known bug which is that when a user selects 'y' to play again, the game does play again as expected, however it automatically starts a new game again at the end of the second game. What should happen is that the player is presented with question if they want to play again. This was fixed by changing the function being called when 'y' was entered to main() instead of the the_game() function. The while loop was also changed to an if statement, which is set to exit if anything other than y is entered.
 
 ## Deployment
 

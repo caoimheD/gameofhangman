@@ -136,8 +136,13 @@ def play_again():
     """
     function that gives the option to play the game again
     """
-    while input("Play again? y/n ").lower() == "y":
-        the_game()
+    start_over = input("Do you want to play again? enter y for yes or "
+                       "any other letter to exit: ")
+
+    if start_over.lower() == "y":
+        main()
+    else:
+        exit()
 
 
 def display_letter(word, random_word, playerguess):
