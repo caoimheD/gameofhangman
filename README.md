@@ -26,9 +26,13 @@ The player will then see instructions and rules about the game:
 
 They are informed what the objective of the game is and that they can make a maximun of 10 wrong guesses. They are then introduced to a feature of the game which is categorys. There is a choice of 3 categorys (animals, geography, food): depending on the player choice, the word they have to guess will be related to that category.
 
+![nav](images/categorychoice.jpg)
+
 This is possible through the use of 3 separate lists of words in the data.py file. Based on the category choice, the random word will be selected from only one of them lists.
 
 After making a selection, users will receive a message which confirms their choice and the game then starts; they are asked to guess a letter and the random word is hidden with underscores. This data is validated and the only acceptable entres are the numbers 1, 2 and 3.
+
+![nav](images/categorychosen.jpg)
 
 ### Guessing a letter
 
@@ -36,13 +40,21 @@ Player can press any letter of the alphabet on their keyboard to start the game.
 
 If the letter they guess is correct, they receive a message that tells them that the letter chosen is in the word. The underscores in the hidden word then update to show that letter (in it's position in the word). Players also see their 'incorrect guesses left' and letters used. In this case, as the letter was correct, they do not lose a turn.
 
+![nav](images/correctletter.jpg)
+
 If the letter guessed is incorrect, players again receive a message, this time stating that the letter is not in the word. The 'incorrect guesses left' diminishes by one and the letter guessed is added to the 'letters tried' list. The image of the hangman also starts to be drawn. As the 'incorrect guesses left' gets lower, a new part of the graphic is added, eventually showing the whole graphic of the hanging man.
+
+![nav](images/incorrectletter.jpg)
 
 ### Winning and losing
 
 Players can win the game by guessing all of the letters in the word. When they do this, they receive a message saying that they have guessed the word and won the game. The message also displays the correct word again.
 
+![nav](images/playerwon.jpg)
+
 Players lose the game when they run out of incorrect guesses and the full graphic is displayed. In this instance, they receive a message stating that they have lost and showing what the correct word was.
+
+![nav](images/playerlost.jpg)
 
 For both instances of winning and losing, the player is asked if they want to play again. They can input y for yes and n for no.
 

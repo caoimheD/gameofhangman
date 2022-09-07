@@ -20,7 +20,7 @@ def output_area():
         get_name = input('Lets play Hangman! Enter your name: ')
 
     print('\nHi', get_name)
-    print(Fore.BLUE + '\nObjective of the game is to guess a hidden word,',
+    print(Fore.YELLOW + '\nObjective of the game is to guess a hidden word,',
           'you can make 10 incorrect guesses.\n')
 
 
@@ -95,7 +95,7 @@ def the_game():
                       '\n')
                 turns -= 1
                 print('Incorrect guesses left: ', turns, '\n')
-                print("Letters tried: ", guessed_letters, '\n')
+                print("Letters tried: ", ', '.join(guessed_letters), '\n')
             elif player_guess in word:
                 print(Fore.GREEN + "Well done!", player_guess, "is in the",
                       "word", '\n')
