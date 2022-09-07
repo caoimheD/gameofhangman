@@ -49,8 +49,8 @@ def get_word():
     """
 
     while True:
-        make_choice = input("Choose your category (enter 1, 2 or 3):\n\n 1.",
-                            "Animals\n 2. Geography\n 3. Food\n")
+        make_choice = input("Choose your category (enter 1, 2 or 3):\n\n"
+                            "1. Animals\n2. Geography\n3. Food\n")
         CategoryChoice(make_choice).category_selection()
         # uses the function in the CategoryChoice class to print
         # based on player choice
