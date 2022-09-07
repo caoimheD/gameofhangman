@@ -53,7 +53,7 @@ def get_word():
                             "1. Animals\n2. Geography\n3. Food\n")
         CategoryChoice(make_choice).category_selection()
         # uses the function in the CategoryChoice class to print
-        # based on player choice
+        # a message based on player choice
 
         if make_choice == '1':
             word = random.choice(animalwords)
@@ -88,40 +88,44 @@ def the_game():
         print("Guess a letter! ", " ".join(random_word))
         player_guess = input().lower()
 
-        if player_guess in valid_choices:
-
-            if player_guess in guessed_letters:
-                print(Fore.RED + 'you already tried this letter', player_guess,
-                      '\n')
-                turns -= 1
-                print('Incorrect guesses left: ', turns, '\n')
-                print("Letters tried: ", ', '.join(guessed_letters), '\n')
-            elif player_guess in word:
-                print(Fore.GREEN + "Well done!", player_guess, "is in the",
-                      "word", '\n')
-                guessed_letters.append(player_guess)
-                print('Incorrect guesses left: ', turns, '\n')
-                print("Letters tried: ", ', '.join(guessed_letters), '\n')
-                display_letter(word, random_word, player_guess)
-            else:
-                print(Fore.RED + "That's incorrect!", player_guess, "is not",
-                      "in the word", '\n')
-                turns -= 1
-                guessed_letters.append(player_guess)
-                print('Incorrect guesses left: ', turns, '\n')
-                print("Letters tried: ", ', '.join(guessed_letters), '\n')
-                graphics(turns)
-        else:
+        try:  # data validation for user input (ensures it is a letter)
+            if player_guess not in valid_choices:
+                raise ValueError('invalid')
+        except ValueError:
             print(Fore.RED + 'Not a valid character. Enter a',
-                  'letter of the alphabet.')
-            pass
+                  Fore.RED + 'letter of the alphabet.')
+            continue
 
-        if turns == 0:
+        if player_guess in guessed_letters:
+            # if statement for 3 scenarios of player's guessed letter
+            # (letter already used, letter correct and letter incorrect)
+            print(Fore.RED + 'you already tried this letter', player_guess,
+                      '\n')
+            turns -= 1
+            print('Incorrect guesses left: ', turns, '\n')
+            print("Letters tried: ", ', '.join(guessed_letters), '\n')
+        elif player_guess in word:
+            print(Fore.GREEN + "Well done!", player_guess, "is in the",
+                      "word", '\n')
+            guessed_letters.append(player_guess)
+            print('Incorrect guesses left: ', turns, '\n')
+            print("Letters tried: ", ', '.join(guessed_letters), '\n')
+            display_letter(word, random_word, player_guess)
+        else:
+            print(Fore.RED + "That's incorrect!", player_guess, "is not",
+                      "in the word", '\n')
+            turns -= 1
+            guessed_letters.append(player_guess)
+            print('Incorrect guesses left: ', turns, '\n')
+            print("Letters tried: ", ', '.join(guessed_letters), '\n')
+            graphics(turns)
+
+        if turns == 0:  # ends game as user reached max errors allowed
             graphics(turns)
             print(Fore.RED + "Game over! You lost!", "The word was", word)
             break
 
-        if "_ " not in random_word:
+        if "_ " not in random_word:  # ends game as user guessed all letters
             print(Fore.GREEN + "Well done! You guessed the word!",
                   "The word was", word, '\n')
             guessed = True
