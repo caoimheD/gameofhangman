@@ -43,6 +43,9 @@ class CategoryChoice:
             print(Fore.YELLOW + 'The category selected is food!')
 
     def words(self):
+        """
+        returns word from category chosen by player
+        """
         if self.category == '1':
             return animalwords
         elif self.category == '2':
@@ -58,16 +61,19 @@ def get_word():
     """
 
     while True:
-    
+
         make_choice = input("Choose your category (enter 1, 2 or 3):\n\n"
                             "1. Animals\n2. Geography\n3. Food\n")
-        acceptable_input = ['1', '2', '3']
+
+        acceptable_input = ['1', '2', '3'] 
+        # data validation for category choice input
         if make_choice not in acceptable_input:
             print('enter only 1, 2 or 3')
             continue
+
         category = CategoryChoice(make_choice)
         category.display()
-        # uses the function in the CategoryChoice class to print
+        # uses the display function in the CategoryChoice class to print
         # a message based on player choice
         
         word = random.choice(category.words())

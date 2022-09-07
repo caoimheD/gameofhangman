@@ -69,7 +69,7 @@ For both instances of winning and losing, the player is asked if they want to pl
 
 ## Data model
 
-A class called CategoryChoice was used in this game, which has 3 different instances (one for each category). The class has a property of self.category and a method of category_selection, which determines the category to display based on the input of the player. It also displays a message on the terminal to confirm this with the player.
+A class called CategoryChoice was used in this game, which has 3 different instances (one for each category). The class has a property of self.category and a methods of display and words. 'display' determines the category to display based on the input of the player and then displays a message to confirm their selection. 'Words' takes the user category choice and returns a random word from the associated list (for example if category food is selected, a random word from the food list will be returned).
 
 ## Data validation
 
