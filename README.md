@@ -81,7 +81,7 @@ This project was deployed to Heroku with the following steps:
 - creating a _Config Var_ called `PORT` and setting this to `8000`
 - connected to GitHub repository and deployed
 
-Live link:
+Live link: https://game-hangman-pp3.herokuapp.com/
 
 ## Credits
 
