@@ -81,13 +81,19 @@ There are multiple times that the player is required to enter an input. For all 
 
 Input data is validated by a while loop that returns 'please enter a valid name' if the field is left blank. Players are allowed to use numbers and characters in their name, so this only returns an error and does not move forward with the game when it is left blank. Once a valid name is entered, the while loop breaks and the game continues.
 
+![nav](images/invalidname.jpg)
+
 - Category selection input. 
 
 Players can only enter in numbers 1, 2 or 3 here. This is validated by having an 'acceptable input' list (which contains the only acceptable entries) and then an if statement that looks at the condition if the input is not in the list. If this is the case, it returns a print statement stating to enter only 1, 2 or 3 and it uses 'continue' to go back to the top of the while loop and continue. Players cannot continue with the game until they make a valid choice.
 
+![nav](images/invalidcat.jpg)
+
 - Guessing letters input.
 
 This is validated with the use of a try/except error statement. If the player's guess is not in the 'validchoices' set (the alphabet), then this will raise a value error. The value error prints a message informing the player to only enter a letter of the alphabet. This does not impact how far they have gotten in the game already, their already guessed letters will still show and the letters used will still remain the same. They will just need to enter a valid character in order to continue playing.
+
+![nav](images/invalidlet.jpg)
 
 ## Testing
 
