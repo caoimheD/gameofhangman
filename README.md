@@ -17,9 +17,9 @@ This game is based on the traditional hangman game:
 - If their guess is correct, the letter replaces one of the underscores
 - If their guess is incorrect, they lose a turn and the figure of the hangman starts to be drawn
 
-If the player guesses the word before their turns go to zero and the full figure is drawn, then the player wins.
+If the player guesses the word before their 'incorrect guesses left' goes to zero and the full figure is drawn, then the player wins.
 
-If the turns go to zero and the full image of the hangman is drawen, then the player loses.
+If the 'incorrect guesses left' go to zero and the full image of the hangman is drawen, then the player loses.
 
 ## Features
 
@@ -31,7 +31,7 @@ The player will then see instructions and rules about the game:
 
 ![nav](images/intro.jpg)
 
-They are informed what the objective of the game is and that they can make a maximun of 10 wrong guesses. They are then introduced to a feature of the game which is categorys. There is a choice of 3 categorys (animals, geography, food): depending on the player choice, the word they have to guess will be related to that category.
+They are informed what the objective of the game is and that they can make a maximun of 10 wrong guesses. They are then introduced to a feature of the game which is categories. There is a choice of 3 categories (animals, geography, food): depending on the player choice, the word they have to guess will be related to that category.
 
 ![nav](images/categorychoice.jpg)
 
@@ -69,7 +69,9 @@ For both instances of winning and losing, the player is asked if they want to pl
 
 ## Data model
 
-A class called CategoryChoice was used in this game, which has 3 different instances (one for each category). The class has a property of self.category and a methods of display and words. 'display' determines the category to display based on the input of the player and then displays a message to confirm their selection. 'Words' takes the user category choice and returns a random word from the associated list (for example if category food is selected, a random word from the food list will be returned).
+A class called CategoryChoice was used in this game, which has 3 different instances (one for each category). The class has a property of self.category and a methods of display and words. 
+
+The 'display' function determines the category to display based on the input of the player and then displays a message to confirm their selection. 'Words' takes the user category choice and returns a random word from the appropriate associated list (for example if category food is selected, a random word from the food list will be returned).
 
 ## Data validation
 
@@ -81,11 +83,11 @@ Input data is validated by a while loop that returns 'please enter a valid name'
 
 - Category selection input. 
 
-Players can only enter in numbers 1, 2 or 3 here. This is validated in the same if statement that assigns a value to 'word' based on the word list selected (if the category is food, the random word will be generated from the food list). This if statement ends with an 'else' (which means that if the selection is not 1, 2 or 3), then a print statement will appear saying to make a valid choice and the options will be presented again. Players cannot continue with the game until they make a valid choice.
+Players can only enter in numbers 1, 2 or 3 here. This is validated by having an 'acceptable input' list (which contains the only acceptable entries) and then an if statement that looks at the condition if the input is not in the list. If this is the case, it returns a print statement stating to enter only 1, 2 or 3 and it uses 'continue' to go back to the top of the while loop and continue. Players cannot continue with the game until they make a valid choice.
 
 - Guessing letters input.
 
-This is validated with the use of a try/except statement. If the player's guess is not in the 'validchoices' set (the alphabet), then this will raise a value error. The value error prints a message informing the player to only enter a letter of the alphabet. This does not impact how far they have gotten in the game already, their already guessed letters will still show and the letters used will still remain the same. They will just need to enter a valid character in order to continue playing.
+This is validated with the use of a try/except error statement. If the player's guess is not in the 'validchoices' set (the alphabet), then this will raise a value error. The value error prints a message informing the player to only enter a letter of the alphabet. This does not impact how far they have gotten in the game already, their already guessed letters will still show and the letters used will still remain the same. They will just need to enter a valid character in order to continue playing.
 
 ## Testing
 
@@ -110,24 +112,31 @@ The following features were tested:
 | player guesses all letters  | winning message displayed, asked if they want to play again | pass |  
 | incorrect guesses left goes to 0  | player told they lost, full graphic drawn, asked if they want to play again | pass |  
 | enter 'y' to play again question | game restarts | pass | 
-| enter 'n' to play again qustion | game exits | pass | 
+| enter any letter to play again qustion | game exits | pass | 
 
 
 Validator testing was done through PEP8 - no errors returned (http://pep8online.com/)
 
-Fixed bugs
+After deployment of the app, all of these featuers were tested again live in Heroku. Data validation was tested by entering incorrect inputs in all user input fields and the game was tested by selecting letters and trying to guess the word.
+
+### Fixed bugs
 
 There was one known bug which is that when a user selects 'y' to play again, the game does play again as expected, however it automatically starts a new game again at the end of the second game. What should happen is that the player is presented with question if they want to play again. This was fixed by changing the function being called when 'y' was entered to main() instead of the the_game() function. The while loop was also changed to an if statement, which is set to exit if anything other than y is entered.
+
+### Future features
+
+For future releases, additional code can be added to ensure that when the player finishes a game and selects play again, the same random word cannot be chosen by the computer. While this is unlikely to happen, as the lists contain a lot of words and there are also different category options, the code does not explicitly prevent it from occurring. This could be achieved by having a variable used_words as an empty list and then appending the random word selected in the current game (and then making the random choice run again if the newly selected word is in this list).
 
 ## Deployment
 
 This project was deployed to Heroku with the following steps:
 
 - create new app
-
-- adding two buildpacks from the _Settings_ tab: `heroku/python`, `heroku/nodejs`
-- creating a _Config Var_ called `PORT` and setting this to `8000`
+- in the settings, add two buildpacks: `heroku/python`, `heroku/nodejs`
+- create a _Config Var_ called `PORT` and set this to `8000`
 - connected to GitHub repository and deployed
+
+Automatic deployment is selected, so any changes pushed to github will reflect in the app.
 
 Live link: https://game-hangman-pp3.herokuapp.com/
 

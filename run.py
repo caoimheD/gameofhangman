@@ -33,7 +33,7 @@ class CategoryChoice:
 
     def display(self):
         """
-        Decides category based on player choice
+        Displays category based on player choice
         """
         if self.category == "1":
             print(Fore.YELLOW + 'The category selected is animals!')
@@ -44,7 +44,7 @@ class CategoryChoice:
 
     def words(self):
         """
-        returns word from category chosen by player
+        Returns word from category chosen by player
         """
         if self.category == '1':
             return animalwords
@@ -54,6 +54,7 @@ class CategoryChoice:
             return foodwords
         else:
             return None
+
 
 def get_word():
     """
@@ -65,17 +66,15 @@ def get_word():
         make_choice = input("Choose your category (enter 1, 2 or 3):\n\n"
                             "1. Animals\n2. Geography\n3. Food\n")
 
-        acceptable_input = ['1', '2', '3'] 
+        acceptable_input = ['1', '2', '3']
         # data validation for category choice input
         if make_choice not in acceptable_input:
             print('enter only 1, 2 or 3')
             continue
 
         category = CategoryChoice(make_choice)
-        category.display()
-        # uses the display function in the CategoryChoice class to print
-        # a message based on player choice
-        
+        category.display()  # uses the display function in the CategoryChoice
+        # class to print a message based on player choice
         word = random.choice(category.words())
         return word
 
@@ -110,20 +109,20 @@ def the_game():
             # if statement for 3 scenarios of player's guessed letter
             # (letter already used, letter correct and letter incorrect)
             print(Fore.RED + 'you already tried this letter', player_guess,
-                      '\n')
+                  '\n')
             turns -= 1
             print('Incorrect guesses left: ', turns, '\n')
             print("Letters tried: ", ', '.join(guessed_letters), '\n')
         elif player_guess in word:
             print(Fore.GREEN + "Well done!", player_guess, "is in the",
-                      "word", '\n')
+                  "word", '\n')
             guessed_letters.append(player_guess)
             print('Incorrect guesses left: ', turns, '\n')
             print("Letters tried: ", ', '.join(guessed_letters), '\n')
             display_letter(word, random_word, player_guess)
         else:
             print(Fore.RED + "That's incorrect!", player_guess, "is not",
-                      "in the word", '\n')
+                  "in the word", '\n')
             turns -= 1
             guessed_letters.append(player_guess)
             print('Incorrect guesses left: ', turns, '\n')
